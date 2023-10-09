@@ -11,9 +11,11 @@
     <body>
         
         <header>
+            <!-- Ajout d'un custom logo modifiable en no-code -->
             <div class="logo-site">
                 <?php the_custom_logo() ?>
             </div>
+            <!-- Appel du menu principal généré en no-code -->
             <nav>
                 <?php
                 wp_nav_menu(array(
@@ -23,12 +25,14 @@
                 ));
                 ?>
             </nav>
+            <!-- Création d'un menu burger pour la version mobile -->
             <div class="menu-burger">
                     <span class="ligne"></span>
                     <span class="ligne"></span>
                     <span class="ligne"></span>
             </div>
         </header>
+        <!-- Appel du menu principal pour le déploiement du menu burger au clic -->
         <div class="navigation-burger">
             <?php
             wp_nav_menu(array(
@@ -37,6 +41,10 @@
                 'menu_class' => 'menu',
             ));
             ?>
+        </div>
+        <!-- Ajout de la modale -->
+        <div class="emplacement-modale">
+            <?php include(get_stylesheet_directory() . '/template_part/modale.php'); ?>
         </div>
 
         <main>
