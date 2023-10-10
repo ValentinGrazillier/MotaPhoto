@@ -32,4 +32,13 @@
     
     add_action('wp_enqueue_scripts', 'theme_enqueue_script');
     
+    // Ouverture du type de contenu personnalisé "photographies" avec single-photo.php 
+    function custom_single_template($single) {
+        global $post;
+        if ($post->post_type === 'photographies') {
+            return get_template_directory() . '/single-photo.php';
+        }
+        return $single;
+    }
+    add_filter('single_template', 'custom_single_template');
 ?>
