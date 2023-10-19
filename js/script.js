@@ -72,4 +72,47 @@ document.addEventListener("DOMContentLoaded", function () {
         navigationBurger.style.display = "none";
         modale.style.display = "block";
     });
+
+/////////////////////////////////////////////////////////////////////////
+    
+// Clic sur Contact sur la page d'une photo et remplissage automatique de la référence en fonction de la photo
+
+    const boutonContactPhoto = document.querySelector(".bouton-photo-unique");
+    const modaleBis = document.querySelector(".emplacement-modale");
+    const refARemplir = document.querySelector(".reference-formulaire input");
+    const refADupliquer = document.getElementById("reference");
+
+        boutonContactPhoto.addEventListener("click", function () {
+            nav.classList.add("active");
+            refARemplir.value = refADupliquer.textContent;
+            modaleBis.style.display = "block";
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+
+/////////////////////////////////////////////////////////////////////////
+
+// Flèches de navigation sur single-photo.php
+    const flechePrecedente = document.querySelector('.fleche-gauche');
+    const flecheSuivante = document.querySelector('.fleche-droite');
+    const zoneVignetteGauche = document.querySelector('.conteneur-vignette-precedent');
+    const zoneVignetteDroite = document.querySelector('.conteneur-vignette-suivant');
+
+    flechePrecedente.addEventListener('mouseenter', function() {
+        zoneVignetteGauche.style.display = "block";
+    });
+
+    flechePrecedente.addEventListener('mouseleave', function() {
+        zoneVignetteGauche.style.display = "none";
+    });
+
+    flecheSuivante.addEventListener('mouseenter', function() {
+        zoneVignetteDroite.style.display = "block";
+    });
+
+    flecheSuivante.addEventListener('mouseleave', function() {
+        zoneVignetteDroite.style.display = "none";
+    });
 });
