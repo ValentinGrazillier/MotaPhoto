@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const zoneVignetteDroite = document.querySelector('.conteneur-vignette-suivant');
 
     flechePrecedente.addEventListener('mouseenter', function() {
-        zoneVignetteGauche.style.display = "block";
+        zoneVignetteGauche.style.display = "flex";
     });
 
     flechePrecedente.addEventListener('mouseleave', function() {
@@ -109,10 +109,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     flecheSuivante.addEventListener('mouseenter', function() {
-        zoneVignetteDroite.style.display = "block";
+        zoneVignetteDroite.style.display = "flex";
     });
 
     flecheSuivante.addEventListener('mouseleave', function() {
         zoneVignetteDroite.style.display = "none";
     });
+
+/////////////////////////////////////////////////////////////////////////
+
 });

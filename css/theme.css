@@ -175,6 +175,7 @@ nav {
     width: 263px;
     height: 40px;
     margin-bottom: 15px;
+    text-transform: uppercase;
 }
 
 .libellé textarea {
@@ -182,6 +183,7 @@ nav {
     border: 1px #B8BBC2 solid;
     width: 263px;
     height: 210px;
+    text-transform: uppercase;
 }
 
 .bouton-envoyer {
@@ -242,7 +244,6 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 70px;
 }
  
 .la-photo img {
@@ -314,19 +315,22 @@ nav {
 
 .conteneur-vignette-precedent, .conteneur-vignette-suivant {
     display: none;
+    overflow: hidden;
+    width: 100px;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
 }
 
 .conteneur-vignette-precedent img, .conteneur-vignette-suivant img {
     object-fit: cover;
-    max-width: 100px;
-    max-height: 100px;
 }
 
 .photos-apparentees {
     border-top: 1px solid black;
     padding-top: 50px;
     margin-left: 70px;
-    margin-right: 100px;
+    margin-right: 80px;
 }
 
 .bloc-photos-apparentees {
@@ -344,6 +348,25 @@ nav {
     font-size: 18px;
 }
 
+.zone-photos {
+    display: flex;
+    gap: 50px;
+    margin: 50px 0 50px 0;
+}
+
+.autres-photos {
+    overflow: hidden;
+    width: 565px;
+    height: 495px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.autres-photos img {
+    object-fit: cover;
+}
+
 .voir-plus {
     background: #D8D8D8;
     border: 1px solid #D8D8D8;
@@ -354,6 +377,16 @@ nav {
     width: 263px;
     height: 50px;
     margin-bottom: 70px;
+    cursor: pointer;
+}
+
+button, input[type="submit"] {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover, input[type="submit"]:hover {
+    background-color: #000;
+    color: #fff;
 }
 
 /*********** Footer ***********/
@@ -387,6 +420,45 @@ footer {
     }
     .fermeture {
         margin-left: 383px;
+    }
+
+    /* Single-photo.php */
+    .zone-gauche {
+        margin-left: 10px;
+        margin-bottom: 10px;
+    }
+    .infos-photo {
+        font-size: 12px;
+        line-height: 10px;
+    }
+    .infos-photo h2 {
+        font-size: 50px;
+        line-height: 60px;
+    }
+    .bandeau-gauche {
+        width: 100%;
+        margin-left: 0;
+        flex-direction: column;
+    }
+    .bouton-photo-unique {
+        margin-bottom: 20px;
+    }
+    .bandeau-droit {
+        display: none;
+    }
+    .photos-apparentees {
+        margin: 0;
+    }
+    .photos-apparentees h3 {
+        margin-left: 20px;
+    }
+    .zone-photos {
+        flex-direction: column;
+        gap: 20px;
+        margin: 20px 0 20px 0;
+    }
+    .voir-plus {
+        margin-bottom: 30px;
     }
 }
 
@@ -424,6 +496,36 @@ footer {
     }
     .libellé textarea {
         height: 150px;
+    }
+
+    /* Single-photo.php */
+    .zone-gauche {
+        width: 80%;
+    }
+    .zone-droite {
+        width: 80%;
+    }
+    .bloc-photo {
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: center;
+    }
+    .autres-photos {
+        width: 320px;
+        height: 280px;
+    }
+    .photos-apparentees {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding-top: 10px;
+    }
+    .photos-apparentees h3 {
+        margin-left: 0;
+    }
+    .voir-plus {
+        display: none;
     }
 
     /* Footer */

@@ -154,10 +154,10 @@ endif;
 	<h3>Vous aimerez aussi</h3>
 	<div class="bloc-photos-apparentees">
 		<div class="zone-photos">
-			<div class="premiere-photo-apparentee"></div>
-			<div class="deuxieme-photo-apparentee"></div>
+			<?php include(get_stylesheet_directory() . '/template_part/photo-bloc.php'); ?>
+			<?php include(get_stylesheet_directory() . '/template_part/photo-bloc.php'); ?>
 		</div>
-		<button class="voir-plus">Toutes les photos</button>
+		<a href="<?php echo esc_url(home_url('/')); ?>"><button class="voir-plus">Toutes les photos</button></a>
 	</div>
 </div>
 
