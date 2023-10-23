@@ -77,10 +77,14 @@ document.addEventListener("DOMContentLoaded", function () {
     
 // Clic sur Contact sur la page d'une photo et remplissage automatique de la référence en fonction de la photo
 
-    const boutonContactPhoto = document.querySelector(".bouton-photo-unique");
-    const modaleBis = document.querySelector(".emplacement-modale");
-    const refARemplir = document.querySelector(".reference-formulaire input");
-    const refADupliquer = document.getElementById("reference");
+    // Si on se trouve sur la page single-photo.php seulement
+    const urlActuelle = window.location.href;
+    
+    if (urlActuelle.match(/photographies/)) {
+        const boutonContactPhoto = document.querySelector(".bouton-photo-unique");
+        const modaleBis = document.querySelector(".emplacement-modale");
+        const refARemplir = document.querySelector(".reference-formulaire input");
+        const refADupliquer = document.getElementById("reference");
 
         boutonContactPhoto.addEventListener("click", function () {
             nav.classList.add("active");
@@ -91,30 +95,35 @@ document.addEventListener("DOMContentLoaded", function () {
                 behavior: "smooth"
             });
         });
+    }
 
 /////////////////////////////////////////////////////////////////////////
 
 // Flèches de navigation sur single-photo.php
-    const flechePrecedente = document.querySelector('.fleche-gauche');
-    const flecheSuivante = document.querySelector('.fleche-droite');
-    const zoneVignetteGauche = document.querySelector('.conteneur-vignette-precedent');
-    const zoneVignetteDroite = document.querySelector('.conteneur-vignette-suivant');
 
-    flechePrecedente.addEventListener('mouseenter', function() {
-        zoneVignetteGauche.style.display = "flex";
-    });
+    // Si on se trouve sur la page single-photo.php seulement
+    if (urlActuelle.match(/photographies/)) {
+        const flechePrecedente = document.querySelector('.fleche-gauche');
+        const flecheSuivante = document.querySelector('.fleche-droite');
+        const zoneVignetteGauche = document.querySelector('.conteneur-vignette-precedent');
+        const zoneVignetteDroite = document.querySelector('.conteneur-vignette-suivant');
 
-    flechePrecedente.addEventListener('mouseleave', function() {
-        zoneVignetteGauche.style.display = "none";
-    });
+        flechePrecedente.addEventListener('mouseenter', function() {
+            zoneVignetteGauche.style.display = "flex";
+        });
 
-    flecheSuivante.addEventListener('mouseenter', function() {
-        zoneVignetteDroite.style.display = "flex";
-    });
+        flechePrecedente.addEventListener('mouseleave', function() {
+            zoneVignetteGauche.style.display = "none";
+        });
 
-    flecheSuivante.addEventListener('mouseleave', function() {
-        zoneVignetteDroite.style.display = "none";
-    });
+        flecheSuivante.addEventListener('mouseenter', function() {
+            zoneVignetteDroite.style.display = "flex";
+        });
+
+        flecheSuivante.addEventListener('mouseleave', function() {
+            zoneVignetteDroite.style.display = "none";
+        });
+    }
 
 /////////////////////////////////////////////////////////////////////////
 

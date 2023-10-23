@@ -201,6 +201,39 @@ nav {
     height: 50px;
 }
 
+/*********** Home.PHP ***********/
+
+/* Hero */
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    text-transform: uppercase;
+    color: transparent;
+    font-family: 'SpaceMono', sans-serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 96px;
+    line-height: 140px;
+    position: absolute;
+    z-index: 50;
+    text-stroke: 3px #FFFFFF;
+    -webkit-text-stroke: 3px #FFFFFF;
+}
+
+.hero-background {
+    width: 100%;
+    position: relative;
+}
+
+.hero-background img {
+    width: 100%;
+}
+
 /*********** Single-photo.PHP ***********/
 
 .bloc-photo {
