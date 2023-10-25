@@ -28,6 +28,7 @@
     //  Chargement du script JS
     function theme_enqueue_script() {
         wp_enqueue_script('script', get_template_directory_uri() . '/js/script.js');
+        wp_enqueue_script('script-filtres', get_template_directory_uri() . '/js/filtres.js');
     }
     
     add_action('wp_enqueue_scripts', 'theme_enqueue_script');

@@ -154,8 +154,40 @@ endif;
 	<h3>Vous aimerez aussi</h3>
 	<div class="bloc-photos-apparentees">
 		<div class="zone-photos">
-			<?php include(get_stylesheet_directory() . '/template_part/photo-bloc.php'); ?>
-			<?php include(get_stylesheet_directory() . '/template_part/photo-bloc.php'); ?>
+			<?php
+				// Récupération de la catégorie de la photo actuelle
+				$categories = wp_get_post_terms(get_the_ID(), 'categorie');
+
+				if ($categories && !is_wp_error($categories)) {
+					$ID_categories = wp_list_pluck($categories, 'term_id');
+
+					// Récupération de 2 photos de la même catégorie aléatoirement, en excluant le post actif
+					$photos_similaires = new WP_Query(array(
+						'post_type' => 'photographies',
+						'posts_per_page' => 2,
+						'post__not_in' => array(get_the_ID()),
+						'orderby' => 'rand',
+						'tax_query' => array(
+							array(
+								'taxonomy' => 'categorie',
+								'field' => 'id',
+								'terms' => $ID_categories,
+							),
+						),
+					));
+
+					if ($photos_similaires->have_posts()) {
+						while ($photos_similaires->have_posts()) {
+							$photos_similaires->the_post();
+							get_template_part('template_part/photo-bloc');
+						}
+						wp_reset_postdata();
+					} else {
+						// Message en cas d'absence de photos de la même catégorie
+						echo "Aucune photo similaire pour le moment - N'hésitez pas à me contacter si vous avez des propositions ou des idées.";
+					}
+				}
+			?>
 		</div>
 		<a href="<?php echo esc_url(home_url('/')); ?>"><button class="voir-plus">Toutes les photos</button></a>
 	</div>
