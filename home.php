@@ -72,7 +72,10 @@ get_header();
         <?php
             $args = array(
                 'post_type' => 'photographies',
-                'posts_per_page' => -1, 
+                'posts_per_page' => 12,
+                'orderby' => 'date',
+                'order' => 'DESC',
+                'paged' => 1,
             );
 
             $photo_query = new WP_Query($args);
@@ -89,7 +92,7 @@ get_header();
         ?>
     </div>
     <div class="bouton-accueil">
-        <button class="voir-plus">Charger plus</button>
+        <button id="charger-plus" class="voir-plus">Charger plus</button>
     </div>
 </div>
 
