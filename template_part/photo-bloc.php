@@ -3,6 +3,7 @@
     $titre_post = get_the_title();
     $lien_post = get_permalink();
     $photo_post = get_the_content();
+    $date_post = get_the_date('Y');
 
     // Récupération du format de la photo et stockage pour filtrage
     $formats = get_the_terms(get_the_ID(), 'formats');

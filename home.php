@@ -26,70 +26,89 @@ get_header();
 </div>
 <div class="bloc-les-photos">
     <div class="filtres">
-        <div class="filtres-gauche">
+        <div class="bloc-filtre">
             <!-- Création du menu déroulant Catégories -->
-            <div class="filtre-categories">
-                <select id="tri-categories">
-                    <option class="filtre-nom" value="" disabled selected>Catégories</option>
-                    <?php
-                        $possibilites = get_terms('categorie');
-
-                        if (!empty($possibilites) && !is_wp_error($possibilites)) {
-                            foreach ($possibilites as $possibilite) {
-                                echo '<option value="' . esc_attr($possibilite->slug) . '">' . esc_html($possibilite->name) . '</option>';
-                            }
-                        }
-                    ?>
-                </select>
+            <div class="menu-deroulant" id="categorie-titre">
+                <div class="menu-titre visible">Catégories</div>
+                <div class="menu-titre cache">Catégories</div>
+                <i class="fa-solid fa-chevron-down menu-fleche" style="color: #000000;"></i>
             </div>
-            <!-- Création du menu déroulant Formats -->
-            <div class="filtre-formats">
-                <select id="tri-format">
-                    <option class="filtre-nom" value="" disabled selected>Formats</option>
-                    <?php
-                        $termes = get_terms('formats');
+            <div class="menu-options" id="categorie-options">
+                <?php
 
-                        if (!empty($termes) && !is_wp_error($termes)) {
-                            foreach ($termes as $terme) {
-                                echo '<option value="' . esc_attr($terme->slug) . '">' . esc_html($terme->name) . '</option>';
-                            }
-                        }
-                    ?>
-                </select>
+                echo '<div class="vide" id="categorie-vide"></div>';
+
+                $possibilites = get_terms('categorie');
+
+                if (!empty($possibilites) && !is_wp_error($possibilites)) {
+                    foreach ($possibilites as $possibilite) {
+                        echo '<div class="menu-option" id="' . esc_attr($possibilite->slug) . '">' . esc_html($possibilite->name) . '</div>';
+                    }
+                }
+                ?>
             </div>
         </div>
-        <div class="filtres-droite">
+        <div class="bloc-filtre">
+            <!-- Création du menu déroulant Formats -->
+            <div class="menu-deroulant" id="format-titre">
+                <div class="menu-titre visible">Formats</div>
+                <div class="menu-titre cache">Formats</div>
+                <i class="fa-solid fa-chevron-down menu-fleche" style="color: #000000;"></i>
+            </div>
+            <div class="menu-options" id="format-options">
+                <?php
+
+                echo '<div class="vide" id="format-vide"></div>';
+
+                $termes = get_terms('formats');
+
+                if (!empty($termes) && !is_wp_error($termes)) {
+                    foreach ($termes as $terme) {
+                        echo '<div class="menu-option" id="' . esc_attr($terme->slug) . '">' . esc_html($terme->name) . '</div>';
+                    }
+                }
+                ?>
+            </div>
+        </div>
+        <div class="bloc-filtre" id="filtre-tri">
             <!-- Création du menu déroulant Trier par -->
-                <select id="tri-date">
-                    <option class="filtre-nom" value="" disabled selected>Trier par</option>
-                    <option value="anciennes-recentes">Des plus anciennes aux plus récentes</option>
-                    <option value="recentes-anciennes">Des plus récentes aux plus anciennes</option>
-                </select>
+            <div class="menu-deroulant" id="tri-titre">
+                <div class="menu-titre visible">Trier par</div>
+                <div class="menu-titre cache">Trier par</div>
+                <i class="fa-solid fa-chevron-down menu-fleche" style="color: #000000;"></i>
+            </div>
+            <div class="menu-options" id="tri-options">
+                <div class="vide" id="tri-vide"></div>
+                <div class="menu-option" id="ASC">Des plus anciennes aux plus récentes</div>
+                <div class="menu-option" id="DESC">Des plus récentes aux plus anciennes</div>
+            </div>
         </div>
     </div>
-    <div class="zone-les-photos">
-        <!-- Création d'une loop pour afficher toutes les photos -->
-        <?php
-            $args = array(
-                'post_type' => 'photographies',
-                'posts_per_page' => 12,
-                'orderby' => 'date',
-                'order' => 'DESC',
-                'paged' => 1,
-            );
+    <div class="affichage-des-photos">
+        <div class="zone-les-photos">
+            <!-- Création d'une loop pour afficher toutes les photos -->
+            <?php
+                $args = array(
+                    'post_type' => 'photographies',
+                    'posts_per_page' => 12,
+                    'orderby' => 'date',
+                    'order' => 'ASC',
+                    'paged' => 1,
+                );
 
-            $photo_query = new WP_Query($args);
+                $photo_query = new WP_Query($args);
 
-            if ($photo_query->have_posts()) {
-                while ($photo_query->have_posts()) {
-                    $photo_query->the_post();
-                    get_template_part('template_part/photo-bloc');
+                if ($photo_query->have_posts()) {
+                    while ($photo_query->have_posts()) {
+                        $photo_query->the_post();
+                        get_template_part('template_part/photo-bloc');
+                    }
+                    wp_reset_postdata();
+                } else {
+                    echo 'Aucune photo trouvée.';
                 }
-                wp_reset_postdata();
-            } else {
-                echo 'Aucune photo trouvée.';
-            }
-        ?>
+            ?>
+        </div>
     </div>
     <div class="bouton-accueil">
         <button id="charger-plus" class="voir-plus">Charger plus</button>
