@@ -1,6 +1,7 @@
-// Gestion du menu burger et animation pour passage au design en croix
-
 document.addEventListener("DOMContentLoaded", function () {
+    
+    // Gestion du menu burger et animation pour passage au design en croix
+
     const boutonBurger = document.querySelector(".menu-burger");
     const nav = document.querySelector("nav");
     const lignes = document.querySelectorAll(".ligne");
@@ -125,6 +126,41 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    overlay();
+});
+
 /////////////////////////////////////////////////////////////////////////
 
-});
+// Overlay des photos de photo-bloc.php
+
+function overlay() {
+    // Apparition de l'overlay au survol
+    const autresPhotos = document.querySelectorAll('.autres-photos');
+
+    autresPhotos.forEach(element => {
+        const overlay = element.querySelector('.survol-photo');
+        const oeil = element.querySelector('.oeil');
+        const divLienPhoto = element.querySelector('.lien-photo');
+        const lienPhoto = divLienPhoto.innerHTML;
+
+
+        // Début du survol
+        element.addEventListener('mouseenter', function() {
+            overlay.style.display = 'block';
+        });
+        // Fin du survol
+        element.addEventListener('mouseleave', function() {
+            overlay.style.display = 'none';
+        });
+
+        //////////////////////////
+
+        // Clic sur l'oeil pour redirection de page
+        oeil.addEventListener('click', function() {
+            // Redirection vers la page de la photo
+            window.location.href = lienPhoto;
+        });
+    });
+
+    lightbox();
+}

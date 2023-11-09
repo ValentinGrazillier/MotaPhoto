@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
+
   // Gestion de l'ouverture et de la fermeture des menus déroulants
+
   function MenuDeroulant(menuId, optionsId) {
     const menu = document.getElementById(menuId);
     const options = document.getElementById(optionsId);
@@ -38,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function() {
   //////////////////////////////////////////////////////////////////
   
   // Gestion de l'option sélectionnée
+
   function choixOption(titreId, optionsId, titreAModifier) {
     const options = document.getElementById(optionsId);
     const choixPossibles = options.querySelectorAll(".menu-option");
@@ -81,6 +84,7 @@ document.addEventListener("DOMContentLoaded", function() {
 ////////////////////////////////////////////////////////////////////
 
   // Gestion du système de filtrage des photos
+
   const elementsCategorie = document.querySelectorAll("#categorie-options .menu-option");
   const elementsFormat = document.querySelectorAll("#format-options .menu-option");
   const elementsTri = document.querySelectorAll("#tri-options .menu-option");
@@ -141,8 +145,10 @@ document.addEventListener("DOMContentLoaded", function() {
           },
           success: function(response) {
               zoneLesPhotos.innerHTML = response;
-              // Si le cnouveau contenu dispose de moins de 12 photos, alors le bouton charger plus disparaît 
+              // Si le nouveau contenu dispose de moins de 12 photos, alors le bouton charger plus disparaît 
               surveillerChargerPlus();
+              // L'overlay de chaque photo se charge à chaque requête
+              overlay();
           },
           error: function(error) {
               console.log(error);
@@ -153,6 +159,7 @@ document.addEventListener("DOMContentLoaded", function() {
   ////////////////////////////////////////////////////////////////////
 
   // Gestion du reset du filtre au clic sur la case vide
+  
   const categorieVide = document.getElementById("categorie-vide");
   const formatVide = document.getElementById("format-vide");
   const triVide = document.getElementById("tri-vide");

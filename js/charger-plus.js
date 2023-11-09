@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    
     // Initialisation de la page
     let page = 1;
     const chargerPlusBouton = document.getElementById('charger-plus');
@@ -39,6 +40,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(responseData, 'text/html');
                 const figureCompte = doc.querySelectorAll('figure').length;
+                // L'overlay de chaque photo se charge au clic sur le bouton
+                overlay();
+                lightbox();
 
                 // Si moins de 12 éléments, le bouton disparait
                 if (figureCompte < 12) {

@@ -37,6 +37,7 @@
     //  Chargement du script JS
     function theme_enqueue_script() {
         wp_enqueue_script('jquery');
+        wp_enqueue_script('script-lightbox', get_template_directory_uri() . '/js/lightbox.js');
         wp_enqueue_script('script', get_template_directory_uri() . '/js/script.js');
         wp_enqueue_script('script-filtres', get_template_directory_uri() . '/js/filtres.js');
         wp_enqueue_script('script-pagination', get_template_directory_uri() . '/js/charger-plus.js');
