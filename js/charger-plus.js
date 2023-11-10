@@ -23,6 +23,8 @@ document.addEventListener('DOMContentLoaded', function() {
         data.append('action', 'charger_plus');
         data.append('page', page);
         data.append('order', ordreTriage);
+        // Ajout du nonce de sécurité
+        data.append('nonce', myAjax.nonce);
 
         try {
             // Envoi de la requête

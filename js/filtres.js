@@ -141,7 +141,9 @@ document.addEventListener("DOMContentLoaded", function() {
               action: 'filtrer_photos',
               category: category,
               format: format,
-              order: order
+              order: order,
+              // Ajout du nonce de sécurité
+              nonce: myAjax.nonce
           },
           success: function(response) {
               zoneLesPhotos.innerHTML = response;

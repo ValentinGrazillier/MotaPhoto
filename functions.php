@@ -28,7 +28,7 @@
             'menu_principal' => __('Menu principal', 'MotaPhoto'),
             'menu_secondaire' => __('Menu secondaire', 'MotaPhoto'),
         ));
-     }
+    }
      
     add_action('init', 'register_custom_menus');
 
@@ -41,8 +41,8 @@
         wp_enqueue_script('script', get_template_directory_uri() . '/js/script.js');
         wp_enqueue_script('script-filtres', get_template_directory_uri() . '/js/filtres.js');
         wp_enqueue_script('script-pagination', get_template_directory_uri() . '/js/charger-plus.js');
-        // Localisation du script pour AJAX
-        wp_localize_script('script-pagination', 'myAjax', array('ajaxurl' => admin_url('admin-ajax.php')));
+        // Localisation du script pour AJAX                                                              // Création d'un nonce pour sécuriser les requêtes
+        wp_localize_script('script-pagination', 'myAjax', array('ajaxurl' => admin_url('admin-ajax.php'), 'nonce'   => wp_create_nonce('ajax-nonce'),));
     }
     
     add_action('wp_enqueue_scripts', 'theme_enqueue_script');
@@ -63,6 +63,10 @@
 
     // Fonction AJAX pour le charger plus
     function charger_plus() {
+
+        // Vérification du nonce avant exécution de la requête
+        check_ajax_referer('ajax-nonce', 'nonce');
+
         $page = $_POST['page'];
         $ordreTriage = $_POST['order'];
         $args = array(
@@ -93,6 +97,10 @@
     
     // Fonction AJAX pour récupérer les photos filtrées
     function filtrer_photos() {
+
+        // Vérification du nonce avant exécution de la requête
+        check_ajax_referer('ajax-nonce', 'nonce');
+
         $tax_query = array('relation' => 'AND');
         $order = $_POST['order'] ?? 'ASC';
 
@@ -152,5 +160,4 @@
 
     add_action('wp_ajax_filtrer_photos', 'filtrer_photos');
     add_action('wp_ajax_nopriv_filtrer_photos', 'filtrer_photos');
-
 ?>
