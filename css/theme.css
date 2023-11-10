@@ -81,10 +81,11 @@ nav {
     display: none;
     width: 100%;
     height: calc(100% - 80px);
+    position: absolute;
     background-color: #E00000;
     z-index: 99;
     animation: fade-in-top 1s ease-in-out;
-    padding: 200px 0 200px 0;
+    padding: 200px 0 2830px 0;
 }
 
 .navigation-burger ul {
@@ -885,7 +886,7 @@ footer {
 @media (max-width: 1025px) {
 
     /* Home.php */
-    h1 {
+    .hero h1 {
         font-size: 70px;
     }
     .filtres {
@@ -1094,7 +1095,7 @@ footer {
     }
 
     /* Home.php */
-    h1 {
+    .hero h1 {
         font-size: 25px;
     }
     .hero-background {
